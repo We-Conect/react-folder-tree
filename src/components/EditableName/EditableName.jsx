@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
 import {
-  iconContainerClassName,
   iconClassName,
+  iconContainerClassName,
 } from '../../utils/iconUtils';
 
 const EditableName = ({
@@ -13,6 +13,7 @@ const EditableName = ({
   OKIcon,
   CancelIcon,
   nodeData,
+  checked,
 }) => {
   const { name } = nodeData;
   const [inputVal, setInputVal] = useState(name);
@@ -52,7 +53,7 @@ const EditableName = ({
   );
 
   const displayName = (
-    <span className='displayName'>
+    <span className={checked?'displayName':'displayNameChecked'}>
       { name }
     </span>
   );
@@ -71,6 +72,7 @@ EditableName.propTypes = {
   OKIcon: PropTypes.func.isRequired,
   CancelIcon: PropTypes.func.isRequired,
   nodeData: PropTypes.object.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
 
 export default EditableName;

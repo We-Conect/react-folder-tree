@@ -1,30 +1,30 @@
+import PropTypes from 'prop-types';
 import React, {
   useContext,
   useState,
 } from 'react';
-import PropTypes from 'prop-types';
 import {
-  AiFillCaretRight,
   AiFillCaretDown,
-  AiOutlineFolder,
-  AiOutlineFolderOpen,
-  AiOutlineFile,
+  AiFillCaretRight,
+  AiOutlineCheck,
   AiOutlineClose,
   AiOutlineDelete,
   AiOutlineEdit,
+  AiOutlineFile,
   AiOutlineFileAdd,
+  AiOutlineFolder,
   AiOutlineFolderAdd,
-  AiOutlineCheck,
+  AiOutlineFolderOpen,
 } from 'react-icons/ai';
 
-import CheckBox from '../CheckBox/CheckBox';
-import ConfigContext from '../FolderTree/context';
-import EditableName from '../EditableName/EditableName';
 import {
-  iconContainerClassName,
-  iconClassName,
   getDefaultIcon,
+  iconClassName,
+  iconContainerClassName,
 } from '../../utils/iconUtils';
+import CheckBox from '../CheckBox/CheckBox';
+import EditableName from '../EditableName/EditableName';
+import ConfigContext from '../FolderTree/context';
 
 const TreeNode = ({
   path,
@@ -32,10 +32,11 @@ const TreeNode = ({
   checked,
   isOpen,
   children,
+  selectedId,
   ...restData
 }) => {
   const nodeData = {
-    path, name, checked, isOpen, ...restData,
+    path, name, checked, isOpen, selectedId, ...restData,
   };
 
   const {
@@ -213,6 +214,7 @@ const TreeNode = ({
             OKIcon={ OKIcon }
             CancelIcon={ CancelIcon }
             nodeData={ nodeData }
+            selectedId={ data._id === selectedId }
           />
         </span>
         { isSelected && TreeNodeToolBar }
@@ -237,7 +239,7 @@ TreeNode.propTypes = {
   name: PropTypes.string.isRequired,
   checked: PropTypes.number.isRequired,
   isOpen: PropTypes.bool,
-
+  selectedId: PropTypes.string,
   children: PropTypes.array,
 };
 
